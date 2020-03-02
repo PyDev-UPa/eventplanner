@@ -17,8 +17,7 @@ def print_event_schedule(activities, event):
 
 
 def prepare_activities_map(activities):
-    
-    
+    ... 
 
 
 if __name__ == "__main__":
