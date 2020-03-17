@@ -8,7 +8,7 @@ def print_event_schedule(activities, event):
 
     for a in event_act:
         print("{} \nat {} from {} to {}\norganized by{}\n".format(
-            a["name"],
+            a["event"],
             a["activity_location"],
             a["activity_start"].strftime("%H:%M"),
             a["activity_end"].strftime("%H:%M"),
@@ -17,7 +17,11 @@ def print_event_schedule(activities, event):
 
 
 def prepare_activities_map(activities):
-    ... 
+    all_events = set([a["event"] for a in activities])
+    columns_count = 0
+    for e in all_events:
+        columns_count += 
+    ...
 
 
 if __name__ == "__main__":
@@ -32,4 +36,5 @@ if __name__ == "__main__":
         events=evs
     )
 
-    print_event_schedule(activities, "SummerSchool2020")
+    # print_event_schedule(activities, "SummerSchool2020")
+    prepare_activities_map(activities)

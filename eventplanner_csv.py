@@ -28,7 +28,17 @@ def import_events(file):
     with open(file) as f:
         reader = csv.reader(f)
         for r in reader:
-            events.append(r[0])
+            event_name = r[0]
+            event_start = datetime.strptime(r[1], "%d.%m.%Y")
+            event_end = datetime.strptime(r[2], "%d.%m.%Y")
+
+            new_event = {
+                "name": event_name,
+                "start": event_start,
+                "end": event_end
+            }
+
+            events.append(new_event)
     return events
 
 
@@ -39,7 +49,7 @@ def import_activities(file, staff=None, locations=None, events=None):
         for r in reader:
             act_event = r[0]
             if events:
-                assert act_event in events, \
+                assert act_event in [e["name"] for e in events], \
                     "{} not in defined events".format(act_event)
 
             act_name = r[1]
