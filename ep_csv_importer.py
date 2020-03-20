@@ -2,10 +2,9 @@
 logic from other logic"""
 
 import csv
-
 import ep_model as epm
-
 from datetime import datetime
+from pathlib import Path
 
 
 def import_staff(file, context):
@@ -69,10 +68,21 @@ def import_activities(file, context):
             act_event.add_activity(new_activity)
 
 
+def import_default_files(folder, context):
+    directory = Path(folder)
+    files = [
+        ("staff.csv", import_staff),
+        ("locations.csv", import_locations),
+        ("events.csv", import_events),
+        ("activities.csv", import_activities)
+    ]
+
+    for f in files:
+        data_file = directory / f[0]
+        f[1](data_file, context)
+
+
 if __name__ == "__main__":
     context = epm.EPContext()
-    import_staff("test_data/staff.csv", context)
-    import_locations("test_data/locations.csv", context)
-    import_events("test_data/events.csv", context)
-    import_activities("test_data/activities.csv", context)
+    import_default_files("test_data", context)
     ...
