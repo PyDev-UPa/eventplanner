@@ -28,8 +28,8 @@ def import_events(file, context):
         reader = csv.reader(f)
         for r in reader:
             event_name = r[0]
-            event_start = datetime.strptime(r[1], "%d.%m.%Y")
-            event_end = datetime.strptime(r[2], "%d.%m.%Y")
+            event_start = datetime.strptime(r[1], "%d.%m.%Y %H:%M")
+            event_end = datetime.strptime(r[2], "%d.%m.%Y %H:%M")
 
             event = epm.Event(event_name, event_start, event_end)
             context.add_event(event)
